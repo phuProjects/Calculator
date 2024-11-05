@@ -62,3 +62,7 @@ form .display input[type="text"] {
   padding: 10px;
   box-sizing: border-box;
 }
+
+.calculator .equal-button{
+  width: 48%;
+}
