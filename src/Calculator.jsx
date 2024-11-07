@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 export default function Calculator(){
 
     const [input, setInput] = useState("");
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState(0);
 
     function handleInputChange(event){
         setInput(event.target.value)
@@ -11,10 +11,12 @@ export default function Calculator(){
         setInput((prevInput) => prevInput + val)
     }
     function handleOperation(op){
-        if(input[input.length] === op){
-            alert("Error")
-        }
-        else{
+        const trimmedInput = input.trim()
+
+        if (trimmedInput[trimmedInput.length - 1] === op){
+            return;
+        } 
+        else {
             setInput((prevInput) => prevInput + op)
         }
     }
@@ -22,6 +24,9 @@ export default function Calculator(){
         setInput("")
     }
     function handleEvaluation(){
+        const evaluatedResult = eval(input)
+        setResult(evaluatedResult)
+        setInput(String(evaluatedResult))
     }
 
 
@@ -42,7 +47,7 @@ export default function Calculator(){
                         <input type="button" value="7" onClick={() => handleClick("7")}/>
                         <input type="button" value="8" onClick={() => handleClick("8")}/>
                         <input type="button" value="9" onClick={() => handleClick("9")}/>
-                        <input type="button" value="x" onClick={() => handleOperation("x")}/>
+                        <input type="button" value="x" onClick={() => handleOperation("*")}/>
                     </div>
                     <div>
                         <input type="button" value="4" onClick={() => handleClick("4")}/>
@@ -59,7 +64,7 @@ export default function Calculator(){
                     <div>
                         <input type="button" value="00" onClick={() => handleClick("0")}/>
                         <input type="button" value="." onClick={() => handleClick(".")}/>
-                        <input className="equal-button" type="button" value="="/>
+                        <input className="equal-button" type="button" value="=" onClick={handleEvaluation}/>
                     </div>
                 </form>
 
