@@ -28,6 +28,9 @@ export default function Calculator(){
         setResult(evaluatedResult)
         setInput(String(evaluatedResult))
     }
+    function handleDelete(){
+        setInput(() => input.slice(0, input.length - 1))
+    }
 
 
     return(
@@ -39,7 +42,7 @@ export default function Calculator(){
                     </div>
                     <div>
                         <input type="button" value="C" onClick={handleClear}/>
-                        <input type="button" value="+/-" onClick={() => handleOperation("+/-")}/>
+                        <input type="button" value="De" onClick={handleDelete}/>
                         <input type="button" value="%" onClick={() => handleOperation("%")}/>
                         <input type="button" value="÷" onClick={() => handleOperation("÷")}/>
                     </div>
